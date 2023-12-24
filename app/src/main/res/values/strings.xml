@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">FurnitureStore</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="splash_discription">We make laid-back furniture for people to really kick off their shoes and lead happier, more relaxed lives.</string>
+</resources>
