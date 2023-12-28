@@ -6,4 +6,14 @@
     <color name="discription_text_color">#575757</color>
     <color name="splash_button_background">#FEC248</color>
     <color name="cart_plus_minus_color">#EDEDED</color>
+    <color name="primary">#A1662F</color>
+
+    <color name="btnRipple">#ED7935</color>
+    <color name="searchBackgroundFocused">#C8C5C5</color>
+    <color name="searchBackgroundNotFocused">#ECECEC</color>
+    <color name="bottomAppBar">#f6f6f6</color>
+    <color name="bottomBarTextColor">#676767</color>
+
+    <color name="text1">#3d33a8</color>
+    <color name="text2">#dd3d00</color>
 </resources>

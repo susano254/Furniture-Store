@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.susano.furniturestore" />
+                  <option name="mobileSdkAppId" value="1:597773928479:android:0da3eed1ab7d5266992d2a" />
+                  <option name="projectId" value="furniturestore-c7eb8" />
+                  <option name="projectNumber" value="597773928479" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

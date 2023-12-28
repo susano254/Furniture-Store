@@ -1,4 +1,4 @@
-package com.susano.furniturestore;
+package com.susano.furniturestore.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.susano.furniturestore.R;
 
 public class Splash extends AppCompatActivity {
 
@@ -19,7 +22,12 @@ public class Splash extends AppCompatActivity {
         splash_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Splash.this, MainActivity.class));
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if(user == null)
+                    startActivity(new Intent(Splash.this, SignIn.class));
+                else
+                    startActivity(new Intent(Splash.this, MainActivity.class));
+                finish();
             }
         });
     }
