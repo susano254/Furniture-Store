@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         categoryList.add(new Category("Sofa", "sofa"));
         categoryList.add(new Category("Lights", "wall_lamp"));
 
-        categoriesAdapter = new CategoriesAdapter(categoryList);
+        categoriesAdapter = new CategoriesAdapter(MainActivity.this, categoryList);
         categoryRecyclerView.setAdapter(categoriesAdapter);
     }
 }

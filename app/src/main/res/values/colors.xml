@@ -16,4 +16,7 @@
 
     <color name="text1">#3d33a8</color>
     <color name="text2">#dd3d00</color>
+    <color name="Transparent">#00000000</color>
+    <color name="red">#FF0000</color>
+    <color name="blue_gray">#6e7f80</color>
 </resources>
