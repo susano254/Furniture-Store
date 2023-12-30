@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ public class AddProduct extends AppCompatActivity {
     Spinner spinner;
     public Uri imageUri;
     String spinner_choice;
+    ImageButton back;
 
     FirebaseStorage firebaseStorage;
     StorageReference storageReference;
@@ -61,6 +63,8 @@ public class AddProduct extends AppCompatActivity {
         productDiscription = findViewById(R.id.product_discription);
         spinner = findViewById(R.id.categories_spinner);
 
+
+        back = findViewById(R.id.back_btn);
         add_product_btn = findViewById(R.id.add_product_btn);
         add_image_view = findViewById(R.id.add_img_imageView);
         add_image_btn = findViewById(R.id.add_img_btn);
@@ -68,6 +72,8 @@ public class AddProduct extends AppCompatActivity {
             choosePicture();
         });
 
+
+        back.setOnClickListener(v -> finish());
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

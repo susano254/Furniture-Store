@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -58,6 +59,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         back.setOnClickListener(v -> finish());
         favBtn.setOnClickListener(v->{
+            isFavorite = !isFavorite;
             if(isFavorite) {
                 favBtn.setImageResource(R.drawable.favorite);
                 addToFavorite();
@@ -68,25 +70,27 @@ public class DetailsActivity extends AppCompatActivity {
                 removeFromFavorite();
             }
 
-            isFavorite = !isFavorite;
         });
         minus.setOnClickListener(v -> {
             int value = Integer.parseInt(num_txt.getText().toString());
+            if(value <= 0) return;
             value--;
-            num_txt.setText(value);
+            num_txt.setText(Integer.toString(value));
         });
         plus.setOnClickListener(v -> {
             int value = Integer.parseInt(num_txt.getText().toString());
             value++;
-            num_txt.setText(value);
+            num_txt.setText(Integer.toString(value));
         });
 
     }
 
     private void addToFavorite() {
+        Toast.makeText(DetailsActivity.this, "Added to Favourites", Toast.LENGTH_SHORT).show();
     }
 
     private void removeFromFavorite() {
+        Toast.makeText(DetailsActivity.this, "Removed from Favourites", Toast.LENGTH_SHORT).show();
     }
 
     private void loadData(Bundle savedInstanceState) {
