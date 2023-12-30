@@ -1,14 +1,14 @@
 package com.susano.furniturestore.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.susano.furniturestore.R;
@@ -17,23 +17,32 @@ public class DetailsActivity extends AppCompatActivity {
     String name, description, imageKey;
     double price;
     int id;
-    ImageView product_img;
-    TextView product_name, product_price, product_description;
+    ImageView product_img, favBtn;
+    TextView product_name, product_price, product_description, num_txt;
+    ImageButton minus, plus, back;
+
+    boolean isFavorite = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_details);
 
         product_img = findViewById(R.id.product_image);
         product_name = findViewById(R.id.product_name);
         product_price = findViewById(R.id.product_price);
-        product_description = findViewById(R.id.product_discription);
+        product_description = findViewById(R.id.product_description);
+
+        favBtn = findViewById(R.id.favBtn);
+        minus = findViewById(R.id.minusBtn);
+        plus = findViewById(R.id.plusBtn);
+        num_txt = findViewById(R.id.numTxt);
+        back = findViewById(R.id.back_btn);
 
         loadData(savedInstanceState);
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference storageReference = firebaseStorage.getReference();
-
         StorageReference imageref = storageReference.child("images/" + imageKey);
         imageref.getDownloadUrl().addOnSuccessListener(uri -> {
             String imageURL = uri.toString();
@@ -44,6 +53,40 @@ public class DetailsActivity extends AppCompatActivity {
                     .into(product_img);
 
         });
+
+
+
+        back.setOnClickListener(v -> finish());
+        favBtn.setOnClickListener(v->{
+            if(isFavorite) {
+                favBtn.setImageResource(R.drawable.favorite);
+                addToFavorite();
+            }
+
+            else {
+                favBtn.setImageResource(R.drawable.favourite_white);
+                removeFromFavorite();
+            }
+
+            isFavorite = !isFavorite;
+        });
+        minus.setOnClickListener(v -> {
+            int value = Integer.parseInt(num_txt.getText().toString());
+            value--;
+            num_txt.setText(value);
+        });
+        plus.setOnClickListener(v -> {
+            int value = Integer.parseInt(num_txt.getText().toString());
+            value++;
+            num_txt.setText(value);
+        });
+
+    }
+
+    private void addToFavorite() {
+    }
+
+    private void removeFromFavorite() {
     }
 
     private void loadData(Bundle savedInstanceState) {
@@ -58,4 +101,5 @@ public class DetailsActivity extends AppCompatActivity {
             }
         }
     }
+
 }

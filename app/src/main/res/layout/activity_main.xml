@@ -11,14 +11,15 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottom_coordinator">
 
         <LinearLayout
+            android:id="@+id/main_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent" >
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -87,38 +88,12 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:layout_marginHorizontal="20dp">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/categories"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@string/categories"-->
-<!--                    android:textSize="20sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"/>-->
-
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/categories_recyclerView"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    app:layout_constraintTop_toBottomOf="@id/categories" />-->
-
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="20dp"
-                android:layout_gravity="center">
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:id="@+id/Categories"
@@ -127,16 +102,17 @@
                     android:text="@string/categories"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/categories_recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="0dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="2"
-                    app:layout_constraintTop_toBottomOf="@id/Categories"/>
+                    app:layout_constraintTop_toBottomOf="@id/Categories"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:spanCount="2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -190,6 +166,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/home"
                         android:textSize="12sp"
+                        android:textStyle="bold"
                         android:textColor="@color/bottomBarTextColor"
                         android:textAlignment="center"/>
                 </LinearLayout>
@@ -216,6 +193,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/profile"
                         android:textSize="12sp"
+                        android:textStyle="bold"
                         android:textColor="@color/bottomBarTextColor"
                         android:textAlignment="center"/>
                 </LinearLayout>
@@ -224,6 +202,33 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.2" />
+
+                <LinearLayout
+                    android:id="@+id/wishListBtn"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/bottom_bar_ripple">
+
+                    <ImageView
+                        android:id="@+id/wishListIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/favorite" />
+
+                    <TextView
+                        android:id="@+id/wishListTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Wish List"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/bottomBarTextColor"
+                        android:textAlignment="center"/>
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/add_product_btn"
@@ -247,34 +252,9 @@
                         android:id="@+id/supportText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="add Product"
+                        android:text="Add"
                         android:textSize="12sp"
-                        android:textColor="@color/bottomBarTextColor"
-                        android:textAlignment="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/settingsBtn"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="@drawable/bottom_bar_ripple">
-
-                    <ImageView
-                        android:id="@+id/settingsIcon"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/settings_icon" />
-
-                    <TextView
-                        android:id="@+id/settingsText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/settings"
-                        android:textSize="12sp"
+                        android:textStyle="bold"
                         android:textColor="@color/bottomBarTextColor"
                         android:textAlignment="center"/>
                 </LinearLayout>

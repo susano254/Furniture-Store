@@ -93,8 +93,8 @@ public class AddProduct extends AppCompatActivity {
             product.put("name", productName.getText().toString());
             product.put("price", productPrice.getText().toString());
             product.put("category", spinner_choice);
-            product.put("Discription", productDiscription.getText().toString());
-            product.put("picture", productImageKey);
+            product.put("description", productDiscription.getText().toString());
+            product.put("imageKey", productImageKey);
 
             // Add a new document with a generated ID
             db.collection(spinner_choice)

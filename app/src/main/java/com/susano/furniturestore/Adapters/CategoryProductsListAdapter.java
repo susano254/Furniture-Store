@@ -13,6 +13,9 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.susano.furniturestore.Activities.DetailsActivity;
 import com.susano.furniturestore.Models.Product;
 import com.susano.furniturestore.R;
@@ -37,16 +40,33 @@ public class CategoryProductsListAdapter extends RecyclerView.Adapter<CategoryPr
 
     @Override
     public void onBindViewHolder(@NonNull CategoryProductsListAdapter.ViewHolder holder, int position) {
+        Product product = products.get(position);
+
+        holder.product_name.setText(product.getName());
+        holder.product_price.setText(Double.toString(product.getPrice()));
+
+
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference storageReference = firebaseStorage.getReference();
+        StorageReference imageref = storageReference.child("images/" + product.getImageKey());
+        imageref.getDownloadUrl().addOnSuccessListener(uri -> {
+            String imageURL = uri.toString();
+
+
+            Glide.with(context)
+                    .load(imageURL)
+                    .into(holder.product_image);
+        });
+
         holder.card.setOnClickListener(v->{
             Intent intent = new Intent(context, DetailsActivity.class);
 
-            intent.putExtra("id", products.get(position).product_id);
-            intent.putExtra("imageKey", products.get(position).imageKey);
-            intent.putExtra("name", products.get(position).name);
-            intent.putExtra("price", products.get(position).price);
-            intent.putExtra("description", products.get(position).description);
+            intent.putExtra("id", products.get(position).getProduct_id());
+            intent.putExtra("imageKey", products.get(position).getImageKey());
+            intent.putExtra("name", products.get(position).getName());
+            intent.putExtra("price", products.get(position).getPrice());
+            intent.putExtra("description", products.get(position).getDescription());
             context.startActivity(intent);
-
         });
 
     }

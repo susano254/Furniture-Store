@@ -7,6 +7,7 @@
     tools:context=".Activities.CategoryProducts">
 
     <ImageButton
+        android:id="@+id/back_btn"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:src="@drawable/arrow_back"
@@ -31,10 +32,12 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/category_recyclerView"
+        android:id="@+id/products_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/search_bar"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
