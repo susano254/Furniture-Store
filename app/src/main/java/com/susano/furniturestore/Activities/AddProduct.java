@@ -45,6 +45,8 @@ public class AddProduct extends AppCompatActivity {
     String spinner_choice;
     ImageButton back;
 
+
+
     FirebaseStorage firebaseStorage;
     StorageReference storageReference;
     private String productImageKey;
