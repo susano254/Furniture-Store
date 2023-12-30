@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "597773928479",
+    "project_id": "furniturestore-c7eb8",
+    "storage_bucket": "furniturestore-c7eb8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597773928479:android:0da3eed1ab7d5266992d2a",
+        "android_client_info": {
+          "package_name": "com.susano.furniturestore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHntvuHwLvee1U_kIXkthTh_5T1mzvKo4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

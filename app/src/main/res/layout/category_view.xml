@@ -8,7 +8,8 @@
     android:layout_margin="10dp"
     android:focusable="true"
     android:clickable="true"
-    android:background="@drawable/category_background"
+    android:background="@drawable/rounded_button"
+    android:elevation="18dp"
     android:gravity="center"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 

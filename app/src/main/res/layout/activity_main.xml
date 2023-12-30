@@ -52,17 +52,18 @@
                     android:id="@+id/MainActivity_ProfilePic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/profile"
                     android:layout_margin="20dp"
+                    android:src="@drawable/profile_pic"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="12dp"
                 android:layout_marginHorizontal="20dp"
                 android:hint="Search"
                 android:drawableStart="@drawable/search"
