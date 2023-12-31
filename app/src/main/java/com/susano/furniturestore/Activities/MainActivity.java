@@ -1,6 +1,7 @@
 package com.susano.furniturestore.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     LinearLayout add_product_btn;
     FloatingActionButton cart_btn;
+    ConstraintLayout cart_nav_btn;
 
     private RecyclerView categoryRecyclerView;
     private CategoriesAdapter categoriesAdapter;
@@ -33,8 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
         getUserData();
         CategoryRecyclerView();
+        cart_btn = findViewById(R.id.cart_btn);
         add_product_btn = findViewById(R.id.add_product_btn);
+        cart_nav_btn = findViewById(R.id.cart_nav_btn);
 
+
+        cart_nav_btn.setOnClickListener(v-> startActivity(new Intent(MainActivity.this, CartActivity.class)));
+        cart_btn.setOnClickListener(v-> startActivity(new Intent(MainActivity.this, CartActivity.class)));
         add_product_btn.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, AddProduct.class));
         });
@@ -50,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             Uri photoUrl = user.getPhotoUrl();
 
             boolean emailVerified = user.isEmailVerified();
-
             String uid = user.getUid();
         }
     }

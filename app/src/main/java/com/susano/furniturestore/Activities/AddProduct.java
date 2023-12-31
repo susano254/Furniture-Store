@@ -29,6 +29,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.susano.furniturestore.Models.Product;
 import com.susano.furniturestore.R;
 
 import java.util.HashMap;
@@ -95,14 +96,21 @@ public class AddProduct extends AppCompatActivity {
 
 
         add_product_btn.setOnClickListener(v-> {
+            String name = productName.getText().toString();
+            String description = productDiscription.getText().toString();
+
+
+
+            Product product = new Product(name, description, productImageKey, spinner_choice, Double.parseDouble(productPrice.getText().toString()));
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             // Create a new user with a first and last name
-            Map<String, Object> product = new HashMap<>();
-            product.put("name", productName.getText().toString());
-            product.put("price", productPrice.getText().toString());
-            product.put("category", spinner_choice);
-            product.put("description", productDiscription.getText().toString());
-            product.put("imageKey", productImageKey);
+            Map<String, Object> productMap = new HashMap<>();
+            productMap.put("product_id", product.getProduct_id());
+            productMap.put("name", product.getName());
+            productMap.put("price", product.getPrice());
+            productMap.put("category", product.getCategory());
+            productMap.put("description", product.getDescription());
+            productMap.put("imageKey", product.getImageKey());
 
             // Add a new document with a generated ID
             db.collection(spinner_choice)

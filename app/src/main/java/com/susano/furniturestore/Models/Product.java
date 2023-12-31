@@ -1,26 +1,34 @@
 package com.susano.furniturestore.Models;
 
+import java.util.UUID;
+
 public class Product {
-    static int id;
-    private int product_id;
-    private String name, description, category, imageKey;
+    private String product_id,  name, description, category, imageKey;
     private double price;
 
+    public Product(String product_id, String name, String description, String imageKey, String category, double price){
+        this.name = name;
+        this.description = description;
+        this.imageKey = imageKey;
+        this.category = category;
+        this.price = price;
+        this.product_id = product_id;
+    }
     public Product(String name, String description, String imageKey, String category, double price){
         this.name = name;
         this.description = description;
         this.imageKey = imageKey;
         this.category = category;
         this.price = price;
-        this.id = Product.id++;
+        this.product_id = UUID.randomUUID().toString();
     }
 
 
-    public int getProduct_id() {
+    public String getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(int product_id) {
+    public void setProduct_id(String product_id) {
         this.product_id = product_id;
     }
 

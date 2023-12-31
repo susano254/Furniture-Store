@@ -13,6 +13,8 @@
     <color name="searchBackgroundNotFocused">#ECECEC</color>
     <color name="bottomAppBar">#f6f6f6</color>
     <color name="bottomBarTextColor">#676767</color>
+    
+    <color name="details_icon_stroke">#B8B8B8</color>
 
     <color name="text1">#3d33a8</color>
     <color name="text2">#dd3d00</color>

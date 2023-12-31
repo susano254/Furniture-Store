@@ -43,7 +43,7 @@ public class CategoryProductsListAdapter extends RecyclerView.Adapter<CategoryPr
         Product product = products.get(position);
 
         holder.product_name.setText(product.getName());
-        holder.product_price.setText(Double.toString(product.getPrice()));
+        holder.product_price.setText("$" + product.getPrice());
 
 
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
@@ -61,7 +61,8 @@ public class CategoryProductsListAdapter extends RecyclerView.Adapter<CategoryPr
         holder.card.setOnClickListener(v->{
             Intent intent = new Intent(context, DetailsActivity.class);
 
-            intent.putExtra("id", products.get(position).getProduct_id());
+            intent.putExtra("category", products.get(position).getCategory());
+            intent.putExtra("product_id", products.get(position).getProduct_id());
             intent.putExtra("imageKey", products.get(position).getImageKey());
             intent.putExtra("name", products.get(position).getName());
             intent.putExtra("price", products.get(position).getPrice());

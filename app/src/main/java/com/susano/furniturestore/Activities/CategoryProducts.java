@@ -50,11 +50,12 @@ public class CategoryProducts extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
+                            String product_id = document.get("product_id").toString();
                             String name = document.get("name").toString();
                             double price = Double.parseDouble(document.get("price").toString());
                             String imageKey = document.get("imageKey").toString();
                             String description = document.get("description").toString();
-                            Product product = new Product(name, description, imageKey, category, price);
+                            Product product = new Product(product_id, name, description, imageKey, category, price);
                             products.add(product);
                         }
                         productsRecyclerView = findViewById(R.id.products_recyclerView);

@@ -1,5 +1,6 @@
 package com.susano.furniturestore.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,12 +30,13 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class DetailsActivity extends AppCompatActivity {
-    String name, description, imageKey;
+    String category, product_id, name, description, imageKey;
     double price;
-    int id;
+
+    ConstraintLayout cart_nav_btn;
     ImageView product_img, favBtn;
-    TextView product_name, product_price, product_description, num_txt;
-    ImageButton minus, plus, back;
+    TextView product_name, product_price, product_description;
+    ImageButton back;
     AppCompatButton addToCartButton;
 
     boolean isFavorite = false;
@@ -57,11 +60,11 @@ public class DetailsActivity extends AppCompatActivity {
         product_price = findViewById(R.id.product_price);
         product_description = findViewById(R.id.product_description);
         addToCartButton = findViewById(R.id.addBtn);
+        cart_nav_btn = findViewById(R.id.cart_nav_btn);
+
+
 
         favBtn = findViewById(R.id.favBtn);
-        minus = findViewById(R.id.minusBtn);
-        plus = findViewById(R.id.plusBtn);
-        num_txt = findViewById(R.id.numTxt);
         back = findViewById(R.id.back_btn);
 
         loadData(savedInstanceState);
@@ -78,10 +81,14 @@ public class DetailsActivity extends AppCompatActivity {
                     .into(product_img);
 
         });
+        product_name.setText(name);
+        product_price.setText(Double.toString(price));
+        product_description.setText(description);
 
 
 
         back.setOnClickListener(v -> finish());
+        cart_nav_btn.setOnClickListener(v-> startActivity(new Intent(DetailsActivity.this, CartActivity.class)));
         favBtn.setOnClickListener(v->{
             isFavorite = !isFavorite;
             if(isFavorite) {
@@ -95,17 +102,6 @@ public class DetailsActivity extends AppCompatActivity {
             }
 
         });
-        minus.setOnClickListener(v -> {
-            int value = Integer.parseInt(num_txt.getText().toString());
-            if(value <= 0) return;
-            value--;
-            num_txt.setText(Integer.toString(value));
-        });
-        plus.setOnClickListener(v -> {
-            int value = Integer.parseInt(num_txt.getText().toString());
-            value++;
-            num_txt.setText(Integer.toString(value));
-        });
         addToCartButton.setOnClickListener(v -> addToCart());
     }
 
@@ -115,14 +111,13 @@ public class DetailsActivity extends AppCompatActivity {
         time = new SimpleDateFormat("HH:MM:ss").format(Calendar.getInstance().getTime());
 
         HashMap<String, Object> productOrder = new HashMap<>();
-        productOrder.put("id", id);
-        productOrder.put("name", name);
-        productOrder.put("price", price);
+        productOrder.put("category", category);
+        productOrder.put("product_id", product_id);
         productOrder.put("date", date);
         productOrder.put("time", time);
-        productOrder.put("amount", num_txt.getText().toString());
+        productOrder.put("quantity", 1);
 
-        firestore.collection("Orders").document(user.getUid()).collection("MyCart")
+        firestore.collection("Carts").document(user.getUid()).collection("MyCart")
                 .add(productOrder).addOnCompleteListener(task -> {
                     if(task.isSuccessful())
                         Toast.makeText(DetailsActivity.this, "Added to Cart", Toast.LENGTH_SHORT).show();
@@ -143,11 +138,13 @@ public class DetailsActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras != null) {
-                id = extras.getInt("id");
-                name = extras.getString("name");
+
+                category = extras.getString("category");
+                product_id = extras.getString("product_id");
                 imageKey = extras.getString("imageKey");
-                description = extras.getString("description");
+                name = extras.getString("name");
                 price = extras.getDouble("price");
+                description = extras.getString("description");
             }
         }
     }
